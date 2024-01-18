@@ -26,3 +26,5 @@ Programmā ir redzami divas funkcijas, Find_information un Fill_Cells.
 Fill_Cells funkcija ievieto datus ss.com šūnās, lai atrastu sludinājumus.
 Find_information funkcijas meklē informāciju par katru sludinājumu un pieraksta info excel tabulā.
 Kā arī tiek izmantoti cikli.
+
+Lai izstradātu programmu, jāizmanto Visual Studio code vai citas lietotnes, kur nav saskarnes ar Chrome
