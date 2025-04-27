@@ -1,30 +1,96 @@
-Germans Veidemans 3.grupa
-231RDB234
-# ss.com sludinājumu meklēšana
+---
 
-Kadreiz cilvēks nolēma izveidot automašīnu nomas uzņēmumu. Viņš sapulcināja komandu, atrada biroja telpas. Komandā viņi nolēma, ka, lai sāktu, viņiem jāiegādājas lietota mašīna ar dažādu cenu diapazonu, dažādām klasēm, ar dažādu jaudu, lai klients varētu izvēlēties viņam piemērotāko variantu. Vienīgā vietne, kur var iegādāties lietotu automašīnu, ir ss.com. bet manuāli meklēt ļoti ilgi, jo viņi vēlas sākt pēc iespējas ātrāk. Viņiem ir fails ar katras auto parametriem. Jums jāizveido tabula, kurā tiks apkopotas visas iespējamās iespējas katram parametram.
+# SS.com Car Listings Scraper
 
-## Programmas uzdevums
+This Python script automatically searches for car listings on [ss.com](https://www.ss.com/) based on user-defined parameters from a CSV file, extracts key data from the listings, and saves the results into an Excel file.
 
- Programma izpilda sekojošas darbības:
- 1. Nolasa datus no faila options.csv. Failā atrodas tādi parametri: Cena, Gads, Dzinēja tilpums, Dzinējs, Ātruma kārba, Virsmas tips, Krāsa. Krāsas vietā varbūt "-" zīme, kas nozīme jebkura krāsa, jo krāsa nav tik svarīga. Dzinēja tilpuma vietā var ierakstīt gan vienu ciparu, gan divus ciparus caur "-", gan vienkārši "-", jo vēl ir elektriskie auto.
- 2. Ievietot options.csv datus ss.com vietnē.
- 3. Atrast visus iespējamus sludinājumus pēc parametriem.
- 4. Ievietot sludīnajumu informāciju tabulā result.xlsx, kur būs tik lapas, cik ir options.csv parametru. Tabulā ir ierakstīts markas nosaukums un modelis, gads, dzinēja tilpums, nobraukums, cena un saite uz sludinājumu.
+---
 
-## Python bibliotēkas
+## Features
 
-Programmā tiek izmantoti selenium, openpyxl, pandas un time bibliotēkas.
-Selenium izmantošana, dod iespēju nodarboties ar ss.com vietni.
-Openpyxl ir izmantota, lai pierakstītu rezultātus excel failā result.xlsx
-Izmantojot bibliotēku pandas, var nolasīt datus no faila options.csv
-Un time dod iespēju apstradāt visus sludinājumu no ss.com vietnes un pierakstīt to result.xlsx failā.
+Fills in search fields on ss.com using input from `options.csv`.
 
-## Programmatūras izmantošanas metodes
+Extracts:
+- Car brand and model
+- Year of manufacture
+- Engine displacement
+- Mileage
+- Price
+- Direct link to the listing
 
-Programmā ir redzami divas funkcijas, Find_information un Fill_Cells.
-Fill_Cells funkcija ievieto datus ss.com šūnās, lai atrastu sludinājumus.
-Find_information funkcijas meklē informāciju par katru sludinājumu un pieraksta info excel tabulā.
-Kā arī tiek izmantoti cikli.
+Handles missing mileage values gracefully.
 
-Lai izstradātu programmu, jāizmanto Visual Studio code vai citas lietotnes, kur nav saskarnes ar Chrome
+Saves results into a well-structured Excel file (`result.xlsx`), with separate sheets for each search query.
+
+---
+
+## Project Structure
+
+- `options.csv` — A CSV file containing search parameters (price range, year range, engine size, etc.)
+- `result.xlsx` — The resulting Excel file containing the scraped listings.
+- `scraper.py` — The main script.
+
+---
+
+## Requirements
+
+- Python 3.x
+- Google Chrome browser
+- ChromeDriver (compatible with your Chrome version)
+
+### Python Libraries:
+
+Install the required libraries using:
+
+```bash
+pip install selenium openpyxl pandas
+```
+
+---
+
+## Usage
+
+1. Prepare your `options.csv` file with the following columns:
+   ```
+   Price Range (e.g., 1000-5000), Year Range (e.g., 2005-2015), Engine Size (e.g., 1.6-2.0), Engine Type, Gearbox Type, Body Type, Color
+   ```
+
+2. Make sure you have the correct version of ChromeDriver installed and added to your system PATH.
+
+3. Run the script:
+
+```bash
+python scraper.py
+```
+
+4. The script will:
+   - Open ss.com
+   - Perform searches based on each row in `options.csv`
+   - Collect the data
+   - Save the results in `result.xlsx`, with one sheet per query.
+
+---
+
+## Notes
+
+- **Delays**: There is a 2-second delay (`time.sleep(2)`) between searches to avoid being blocked by the website.
+- **Website Structure**: If ss.com updates their website layout, the script might require updates in element locators.
+- **Language**: The website is in Latvian; the script uses the site's Latvian field IDs.
+
+---
+
+## Example
+
+Sample `options.csv`:
+
+| Price Range | Year Range | Engine Size | Engine Type | Gearbox Type | Body Type | Color |
+|-------------|------------|-------------|-------------|--------------|-----------|-------|
+| 2000-5000   | 2005-2012   | 1.6-2.0     | Benzīns     | Mehāniska    | Sedans    | Melns |
+
+
+---
+
+## Author
+-Developer: German Veideman
+
+---
