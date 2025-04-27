@@ -91,6 +91,6 @@ Sample `options.csv`:
 ---
 
 ## Author
--Developer: German Veideman
+Developer: German Veideman
 
 ---
